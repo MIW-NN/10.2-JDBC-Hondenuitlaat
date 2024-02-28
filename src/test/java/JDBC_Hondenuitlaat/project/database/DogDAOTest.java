@@ -24,7 +24,7 @@ public class DogDAOTest {
     }
 
     @Test
-    public void whenCallingGetCustomerById_expectRightQueryToBeMade(){
+    public void whenCallingGetDogById_expectRightQueryToBeMade(){
         var prepairedStatement = new MockPreparedStatement();
         var ddao = new DogDAO(new MockDBAccess(prepairedStatement));
 
@@ -38,7 +38,21 @@ public class DogDAOTest {
     }
 
     @Test
-    public void whenCallingGetAllCustomers_expectRightQueryToBeMade(){
+    public void whenCallingGetDogByCustomer_expectRightQueryToBeMade(){
+        var prepairedStatement = new MockPreparedStatement();
+        var ddao = new DogDAO(new MockDBAccess(prepairedStatement));
+
+        var dogs = ddao.getDogsByCustomer(new Customer(1,"","","",""));
+
+        Assert.assertTrue(prepairedStatement.sql.contains("SELECT chipnr, hondnaam, ras FROM Hond WHERE klantnr = ?"));
+        Assert.assertTrue(prepairedStatement.setValues.contains("1=1"));
+        Assert.assertEquals("1", dogs.get(0).getChipnumber());
+        Assert.assertEquals("Doedie", dogs.get(0).getName());
+        Assert.assertEquals("pitbull", dogs.get(0).getBreed());
+    }
+
+    @Test
+    public void whenCallingGetAllDogs_expectRightQueryToBeMade(){
         var prepairedStatement = new MockPreparedStatement();
         var ddao = new DogDAO(new MockDBAccess(prepairedStatement));
 

@@ -33,7 +33,7 @@ public class HondenUitlaatLauncher {
         System.out.println("Testen van hondDAO methods: ");
         Dog dog = dogDAO.getDogById("3");
         System.out.println("Hond ophalen: " + dog);
-        ArrayList<Dog> dogList = dogDAO.getDogByKlant(customer);
+        ArrayList<Dog> dogList = dogDAO.getDogsByCustomer(customer);
         System.out.println();
         System.out.println("Hond van klant ophalen");
         for (Dog dog1 : dogList) {

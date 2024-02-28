@@ -54,7 +54,7 @@ public class DogDAO {
         return result;
     }
 
-    public ArrayList<Dog> getDogByKlant(Customer mpCustomer) {
+    public ArrayList<Dog> getDogsByCustomer(Customer mpCustomer) {
         String sql = "SELECT chipnr, hondnaam, ras FROM Hond WHERE klantnr = ?";
         ArrayList<Dog> resultList = new ArrayList<>();
         Dog tempResult = null;
